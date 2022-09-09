@@ -1,4 +1,4 @@
-# Basic_Apply_Impulse_on_Rigid_Body Godot 4 alpha.16
+# Basic_Apply_Impulse_on_Rigid_Body Godot 4 alpha.15
 Demo about one basic way in how to use the apply_impulse method on a rigid_body
 
 
