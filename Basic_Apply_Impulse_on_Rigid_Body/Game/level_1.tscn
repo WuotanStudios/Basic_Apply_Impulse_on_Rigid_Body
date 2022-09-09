@@ -1,0 +1,220 @@
+[gd_scene load_steps=12 format=3 uid="uid://7xn7r2lnhlg8"]
+
+[ext_resource type="Script" path="res://Game/Player.gd" id="1_d7xpi"]
+[ext_resource type="Material" uid="uid://bgvmj0xnvxtbb" path="res://Materials/Walls_1.tres" id="1_hrknd"]
+[ext_resource type="Material" uid="uid://cyj4gwoxoym1w" path="res://Materials/Player_1.tres" id="3_pr2u8"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_frbit"]
+use_debanding = false
+
+[sub_resource type="Sky" id="Sky_wve0d"]
+sky_material = SubResource("PhysicalSkyMaterial_frbit")
+
+[sub_resource type="Environment" id="Environment_5v7c0"]
+background_mode = 2
+sky = SubResource("Sky_wve0d")
+tonemap_mode = 2
+auto_exposure_enabled = true
+ssao_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_min_cell_size = 0.5
+glow_enabled = true
+glow_bloom = 0.06
+volumetric_fog_density = 0.0005
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_otjhi"]
+albedo_color = Color(0.447059, 0.447059, 0.447059, 1)
+roughness = 0.74
+ao_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7yik4"]
+size = Vector3(1, 11.5205, 35)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4icrq"]
+size = Vector3(35, 1, 35)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ftdf5"]
+friction = 0.19
+bounce = 0.76
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iw0w2"]
+
+[node name="Level_1" type="Node3D"]
+
+[node name="Visuals4Level" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Visuals4Level"]
+environment = SubResource("Environment_5v7c0")
+
+[node name="DirectionalLight3d" type="DirectionalLight3D" parent="Visuals4Level"]
+transform = Transform3D(0.694597, -0.27459, 0.664933, -0.408364, -0.911438, 0.0501952, 0.592262, -0.3064, -0.745214, 0.193417, 10.826, 0)
+light_color = Color(0.972549, 1, 0.843137, 1)
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="SpotLight3d" type="SpotLight3D" parent="Visuals4Level"]
+transform = Transform3D(0.486747, 0.233385, -0.841789, -2.87348e-08, 0.963649, 0.267171, 0.873543, -0.130045, 0.469053, -7.16619, 5.87096, 0.237717)
+visible = false
+light_color = Color(0.839216, 1, 0.894118, 1)
+light_bake_mode = 1
+shadow_enabled = true
+shadow_blur = 0.0
+spot_range = 30.0
+
+[node name="SpotLight3d2" type="SpotLight3D" parent="Visuals4Level"]
+transform = Transform3D(-0.59107, 0.215506, -0.777299, -4.02622e-08, 0.963649, 0.267171, 0.80662, 0.157917, -0.569584, -7.16619, 5.87096, 6.6089)
+visible = false
+light_color = Color(1, 0.92549, 0.870588, 1)
+light_bake_mode = 1
+shadow_enabled = true
+shadow_blur = 0.0
+spot_range = 30.0
+
+[node name="Level_Elements" type="Node3D" parent="."]
+
+[node name="Visible_Elements" type="Node3D" parent="Level_Elements"]
+
+[node name="Ground" type="CSGBox3D" parent="Level_Elements/Visible_Elements"]
+use_collision = true
+size = Vector3(30, 0.2, 30)
+material = SubResource("StandardMaterial3D_otjhi")
+
+[node name="Ground2" type="CSGBox3D" parent="Level_Elements/Visible_Elements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -11)
+use_collision = true
+size = Vector3(30, 0.2, 14)
+
+[node name="Wall_1" type="CSGBox3D" parent="Level_Elements/Visible_Elements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 2.5, 0)
+use_collision = true
+size = Vector3(1, 5, 30)
+material = ExtResource("1_hrknd")
+
+[node name="Wall_2" type="CSGBox3D" parent="Level_Elements/Visible_Elements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2.5, 0)
+use_collision = true
+size = Vector3(1, 5, 30)
+material = ExtResource("1_hrknd")
+
+[node name="Wall_3" type="CSGBox3D" parent="Level_Elements/Visible_Elements"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.5, -15)
+use_collision = true
+size = Vector3(1, 5, 30)
+material = ExtResource("1_hrknd")
+
+[node name="Wall_4" type="CSGBox3D" parent="Level_Elements/Visible_Elements"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 2.5, 15)
+use_collision = true
+size = Vector3(1, 5, 30)
+material = ExtResource("1_hrknd")
+
+[node name="Pillow_1" type="CSGBox3D" parent="Level_Elements/Visible_Elements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2.5, 0)
+use_collision = true
+size = Vector3(1, 5, 1)
+material = ExtResource("1_hrknd")
+
+[node name="Pillow_2" type="CSGBox3D" parent="Level_Elements/Visible_Elements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.5, 0)
+use_collision = true
+size = Vector3(1, 5, 1)
+material = ExtResource("1_hrknd")
+
+[node name="Pillow_3" type="CSGBox3D" parent="Level_Elements/Visible_Elements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2.5, -5)
+use_collision = true
+size = Vector3(1, 5, 1)
+material = ExtResource("1_hrknd")
+
+[node name="Pillow_4" type="CSGBox3D" parent="Level_Elements/Visible_Elements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.5, -5)
+use_collision = true
+size = Vector3(1, 5, 1)
+material = ExtResource("1_hrknd")
+
+[node name="Pillow_5" type="CSGBox3D" parent="Level_Elements/Visible_Elements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2.5, 5)
+use_collision = true
+size = Vector3(1, 5, 1)
+material = ExtResource("1_hrknd")
+
+[node name="Pillow_6" type="CSGBox3D" parent="Level_Elements/Visible_Elements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.5, 5)
+use_collision = true
+size = Vector3(1, 5, 1)
+material = ExtResource("1_hrknd")
+
+[node name="Pillow_7" type="CSGBox3D" parent="Level_Elements/Visible_Elements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2.5, 10)
+use_collision = true
+size = Vector3(1, 5, 1)
+material = ExtResource("1_hrknd")
+
+[node name="Pillow_8" type="CSGBox3D" parent="Level_Elements/Visible_Elements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.5, 10)
+use_collision = true
+size = Vector3(1, 5, 1)
+material = ExtResource("1_hrknd")
+
+[node name="Invisible_Elements" type="Node3D" parent="Level_Elements"]
+
+[node name="StaticBody3d_1" type="StaticBody3D" parent="Level_Elements/Invisible_Elements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 4.04563, 0)
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="Level_Elements/Invisible_Elements/StaticBody3d_1"]
+shape = SubResource("BoxShape3D_7yik4")
+
+[node name="StaticBody3d_2" type="StaticBody3D" parent="Level_Elements/Invisible_Elements"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 4.04563, 0)
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="Level_Elements/Invisible_Elements/StaticBody3d_2"]
+shape = SubResource("BoxShape3D_7yik4")
+
+[node name="StaticBody3d_3" type="StaticBody3D" parent="Level_Elements/Invisible_Elements"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.99382e-07, 4.04563, -16)
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="Level_Elements/Invisible_Elements/StaticBody3d_3"]
+shape = SubResource("BoxShape3D_7yik4")
+
+[node name="StaticBody3d_4" type="StaticBody3D" parent="Level_Elements/Invisible_Elements"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.99382e-07, 4.04563, 16)
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="Level_Elements/Invisible_Elements/StaticBody3d_4"]
+shape = SubResource("BoxShape3D_7yik4")
+
+[node name="StaticBody3d_5" type="StaticBody3D" parent="Level_Elements/Invisible_Elements"]
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="Level_Elements/Invisible_Elements/StaticBody3d_5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+shape = SubResource("BoxShape3D_4icrq")
+
+[node name="Actors" type="Node3D" parent="."]
+
+[node name="Camera3d" type="Camera3D" parent="Actors"]
+transform = Transform3D(1, 0, 0, 0, 0.932463, 0.361267, 0, -0.361267, 0.932463, 0, 6.223, 13.757)
+
+[node name="Player" type="RigidBody3D" parent="Actors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.81952, -6.36544)
+physics_material_override = SubResource("PhysicsMaterial_ftdf5")
+script = ExtResource("1_d7xpi")
+
+[node name="CsgBox3d" type="CSGBox3D" parent="Actors/Player"]
+cast_shadow = 0
+material = ExtResource("3_pr2u8")
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="Actors/Player"]
+shape = SubResource("BoxShape3D_iw0w2")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press arrow keys to apply horizontal impulse to the cube.
+
+Press spacebar to let the cube jump.
+
+Press F8 to exit this little demo."
+metadata/_edit_use_anchors_ = true

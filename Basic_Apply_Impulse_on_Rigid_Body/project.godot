@@ -1,0 +1,29 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Basic Rigid Movement"
+run/main_scene="res://Game/level_1.tscn"
+config/features=PackedStringArray("4.0", "Vulkan Clustered")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1900
+window/size/viewport_height=800
+window/stretch/mode="viewport"
+
+[rendering]
+
+shadows/positional_shadow/soft_shadow_filter_quality=3
+shadows/positional_shadow/soft_shadow_filter_quality.mobile=2
+reflections/sky_reflections/fast_filter_high_quality=true
+reflections/reflection_atlas/reflection_count=32
